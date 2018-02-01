@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections;
-
-
+﻿/*
+ * ITSE 1430
+ * 
+ * Section 1
+ */
+using System;
 
 namespace Nile.Host
 {
@@ -12,23 +14,25 @@ namespace Nile.Host
             bool quit = false;
             while (!quit)
             {
+                //Equality
+                bool isEqual = quit.Equals(10);
                 //Display menu
                 char choice = DisplayMenu();
 
                 //Process menu selection
-                switch (choice)
+                switch (Char.ToUpper(choice))
                 {
-                    // case "l":
+                    // case 'l':
                     case 'L':
                     ListProducts();
                     break;
 
-                    case 'a':
+                    //case 'a':
                     case 'A':
                     AddProduct();
                     break;
 
-                    case 'q':
+                    // case 'q':
                     case 'Q':
                     quit = true;
                     break;
@@ -36,20 +40,21 @@ namespace Nile.Host
             };
         }
 
+        //Add a product
         static void AddProduct()
         {
             //Get name
-            _name = ReadString("Enter name:", true);
+            _name = ReadString("Enter name: ", true);
 
-            //Get Price
-            _price = ReadDecimal("Enter price:", 0);
+            //Get price
+            _price = ReadDecimal("Enter price: ", 0);
 
             //Get description
-            _description = ReadString("Enter optional description:", false);
-
+            _description = ReadString("Enter optional description: ", false);
         }
-        private static decimal ReadDecimal( string message, decimal minValue )
 
+        //Read a decimal value
+        private static decimal ReadDecimal( string message, decimal minValue )
         {
             do
             {
@@ -57,19 +62,24 @@ namespace Nile.Host
 
                 string value = Console.ReadLine();
 
-                decimal result;
-                //  if (Decimal.TryParse(value, out decimal result))
-                {
+                //if (Decimal.TryParse(value, out decimal result) && result >= minValue)
+                //    return result;
 
+                if (Decimal.TryParse(value, out decimal result))
+                {
                     //If not required or not empty
-                    //    if (result >= minValue)
-                  //  return result;
+                    if (result >= minValue)
+                        return result;
                 };
 
-                Console.WriteLine("Value must be >={0}", minValue);
-
+                //Formatting Strings
+                // Console.WriteLine("Value must be >= {0}", minValue);
+                string msg = String.Format("Value must be >= {0}", minValue);
+                Console.WriteLine("Value must be >= {0}", minValue);
             } while (true);
         }
+
+        //Read a string
         private static string ReadString( string message, bool isRequired )
         {
             do
@@ -78,29 +88,81 @@ namespace Nile.Host
 
                 string value = Console.ReadLine();
 
-
-
                 //If not required or not empty
-                //if (result >= minValue)
-                // return result;
-                return value;
+                if (!isRequired || value != "")
+                    return value;
 
-
-                // Console.WriteLine("Value must be >={0}", minValue);
-
+                Console.WriteLine("Value is required");
             } while (true);
         }
 
+        private static char DisplayMenu()
+        {
+            do
+            {
+                Console.WriteLine("L)ist Products");
+                Console.WriteLine("A)dd Product");
+                Console.WriteLine("Q)uit");
+
+                string input = Console.ReadLine();
+
+                //Remove whitespace
+                input = input.Trim();
+                //input.ToLower();
+                input = input.ToUpper();
+
+                //Padding
+                // input = input.PadLeft(10);
+
+
+                //Starts with
+                //input.StartsWith(@"\");
+                //input.EndsWith(@"\");
+
+                //Substring
+                //string newValue = input.Substring(0, 10);
+
+                //if (input == "L" )
+                if (String.Compare(input, "L", true) == 0)
+                    return input[0];
+                else if (input == "A")
+                    return input[0];
+                else if (input == "Q")
+                    return input[0];
+
+                Console.WriteLine("Please choose a valid option");
+            } while (true);
+        }
+
+        //List the products
         static void ListProducts()
         {
             //Are there any products?
-            if (_name != null && _name != "")
-            {
+            // if (_name != null && _name != "")
 
-                //Display a product
-                Console.WriteLine(_name);
-                Console.WriteLine(_price);
-                Console.WriteLine(_description);
+            if (!String.IsNullOrEmpty(_name))
+            {
+                //Display a product- name [$price]
+                //                      <decription>
+
+                //String Formatting
+                //var msg = String.Format("{0} [${1}]", _name, _price);
+
+                //String concatentation
+
+                var msg = _name + " [$" + _price + "]";
+
+                //String concat part 2
+                //var msg = String.Concat(_name, " [$", _price, "]");
+
+                //String interpolation
+                string msg = $"{_name} [${_price}]";
+                Console.WriteLine(msg);
+                //Console.WriteLine(_name);
+                //Console.WriteLine(_price);
+
+                if (!String.IsNullOrEmpty(_description))
+                    Console.WriteLine(_description);
             } else
                 Console.WriteLine("No products");
         }
@@ -110,57 +172,34 @@ namespace Nile.Host
         static decimal _price;
         static string _description;
 
-
-        private static char DisplayMenu()
-        {
-            do
-            {
-                Console.WriteLine("L)ist Products");
-                Console.WriteLine("A)dd Products");
-                Console.WriteLine("Q)uit");
-
-                string input = Console.ReadLine();
-
-                if (input == "L" || input == "l")
-                    return input[0];
-                else if (input == "A")
-                    return input[0];
-                else if (input == "Q")
-                    return input[0];
-
-                Console.WriteLine("Please choose a valid option");
-            } while (true);
-
-        }
-
-
         static void PlayingWithPrimitives()
         {
             //Primitive
             decimal unitPrice = 10.5M;
 
-            //Real decalaration
-            System.Decimal unitPrice2 = 10.5M;
+            //Real declaration
+            //System.Decimal unitPrice2 = 10.5M;
+            Decimal unitPrice2 = 10.5M;
 
-            //Current
-            System.DateTime now = System.DateTime.Now;
+            //Current time
+            DateTime now = DateTime.Now;
 
             System.Collections.ArrayList items;
-
         }
+
         static void PlayingWithVariables()
-
         {
-
             //Single decls
             int hours = 0;
             //Don't
             //int hours;
-            //hours =0;
+            //hours = 0;
+
             double rate = 10.25;
 
-            if (false)
-                hours = 0;
+            //Still not assigned
+            //if (false)
+            //    hours = 0;
 
             int hours2 = hours;
 
@@ -173,7 +212,7 @@ namespace Nile.Host
             firstName = "Bob";
             lastName = "Miller";
 
-            // Multiple assignment
+            //Multiple assignment
             firstName = lastName = "Sue";
 
             //Math ops
@@ -182,16 +221,13 @@ namespace Nile.Host
             int subtract = x - y;
             int multiply = x * y;
             int divide = x / y;
-            int modulous = x % y;
+            int modulos = x % y;
 
             //x = x + 10;
             x += 10;
             double ceiling = Math.Ceiling(rate);
-            double flooor = ceiling;
+            double floor = ceiling;
+
         }
-
-
-
     }
 }
-

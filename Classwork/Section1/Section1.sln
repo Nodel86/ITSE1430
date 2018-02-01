@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nile.Host", "Nile.Host\Nile.Host.csproj", "{483C35E5-C25A-4E9C-9CA2-47D5A396EE2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nile.Host", "Nile.Host\Nile.Host.csproj", "{0ED6EC73-8182-449E-B709-0BA696A2C1B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{483C35E5-C25A-4E9C-9CA2-47D5A396EE2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{483C35E5-C25A-4E9C-9CA2-47D5A396EE2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{483C35E5-C25A-4E9C-9CA2-47D5A396EE2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{483C35E5-C25A-4E9C-9CA2-47D5A396EE2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ED6EC73-8182-449E-B709-0BA696A2C1B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ED6EC73-8182-449E-B709-0BA696A2C1B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ED6EC73-8182-449E-B709-0BA696A2C1B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ED6EC73-8182-449E-B709-0BA696A2C1B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9FF49085-45B2-44C2-B3C6-3DBE675FBF0D}
+		SolutionGuid = {685B9EAE-A85E-43AB-937E-A5B94D050FBF}
 	EndGlobalSection
 EndGlobal
