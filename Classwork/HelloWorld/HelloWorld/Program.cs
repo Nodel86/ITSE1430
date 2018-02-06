@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HelloWorld
 {
-    // Single line comment      
-   class Program
+    // Single line comment
+    class Program
     {
         /*
          * As many lines as you want
@@ -15,6 +15,6 @@ namespace HelloWorld
         static void Main( string[] args )
         {
             Console.WriteLine("Hello World");
-        }                                                            }
+        }
     }
 }

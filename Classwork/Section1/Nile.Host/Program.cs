@@ -16,26 +16,21 @@ namespace Nile.Host
             {
                 //Equality
                 bool isEqual = quit.Equals(10);
+
                 //Display menu
                 char choice = DisplayMenu();
 
                 //Process menu selection
                 switch (Char.ToUpper(choice))
                 {
-                    // case 'l':
-                    case 'L':
-                    ListProducts();
-                    break;
+                    //case 'l':
+                    case 'L': ListProducts(); break;
 
                     //case 'a':
-                    case 'A':
-                    AddProduct();
-                    break;
+                    case 'A': AddProduct(); break;
 
-                    // case 'q':
-                    case 'Q':
-                    quit = true;
-                    break;
+                    //case 'q':
+                    case 'Q': quit = true; break;
                 };
             };
         }
@@ -54,7 +49,7 @@ namespace Nile.Host
         }
 
         //Read a decimal value
-        private static decimal ReadDecimal( string message, decimal minValue )
+        private static decimal ReadDecimal ( string message, decimal minValue )
         {
             do
             {
@@ -72,10 +67,10 @@ namespace Nile.Host
                         return result;
                 };
 
-                //Formatting Strings
-                // Console.WriteLine("Value must be >= {0}", minValue);
+                //Formatting strings
+                //Console.WriteLine("Value must be >= {0}", minValue);
                 string msg = String.Format("Value must be >= {0}", minValue);
-                Console.WriteLine("Value must be >= {0}", minValue);
+                Console.WriteLine(msg);                
             } while (true);
         }
 
@@ -112,8 +107,7 @@ namespace Nile.Host
                 input = input.ToUpper();
 
                 //Padding
-                // input = input.PadLeft(10);
-
+                //input = input.PadLeft(10);
 
                 //Starts with
                 //input.StartsWith(@"\");
@@ -122,35 +116,35 @@ namespace Nile.Host
                 //Substring
                 //string newValue = input.Substring(0, 10);
 
-                //if (input == "L" )
+                //if (input == "L")
                 if (String.Compare(input, "L", true) == 0)
                     return input[0];
                 else if (input == "A")
                     return input[0];
                 else if (input == "Q")
                     return input[0];
-
+                
                 Console.WriteLine("Please choose a valid option");
-            } while (true);
+            } while (true);            
         }
 
         //List the products
-        static void ListProducts()
+        static void ListProducts ()
         {
             //Are there any products?
-            // if (_name != null && _name != "")
-
+            //if (_name != null && _name != String.Empty)
+            //if (_name != null && _name.Length == 0)
+            //if (_name != null && _name != "")
             if (!String.IsNullOrEmpty(_name))
             {
-                //Display a product- name [$price]
-                //                      <decription>
+                //Display a product - name [$price]
+                //                    <description>
 
-                //String Formatting
+                //String formatting
                 //var msg = String.Format("{0} [${1}]", _name, _price);
 
-                //String concatentation
-
-                var msg = _name + " [$" + _price + "]";
+                //String concatenation
+                //var msg = _name + " [$" + _price + "]";
 
                 //String concat part 2
                 //var msg = String.Concat(_name, " [$", _price, "]");
@@ -172,7 +166,7 @@ namespace Nile.Host
         static decimal _price;
         static string _description;
 
-        static void PlayingWithPrimitives()
+        static void PlayingWithPrimitives ()
         {
             //Primitive
             decimal unitPrice = 10.5M;
@@ -187,7 +181,7 @@ namespace Nile.Host
             System.Collections.ArrayList items;
         }
 
-        static void PlayingWithVariables()
+        static void PlayingWithVariables ()
         {
             //Single decls
             int hours = 0;
