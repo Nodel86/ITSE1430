@@ -1,0 +1,8 @@
+﻿1>------ Build started: Project: Nile, Configuration: Debug Any CPU ------
+1>C:\Users\ashton.harris\Source\Repos\ITSE1430\Classwork\Section2\Nile\Product.cs(48,24,48,36): warning CS0169: The field 'Product._description' is never used
+1>C:\Users\ashton.harris\Source\Repos\ITSE1430\Classwork\Section2\Nile\Product.cs(49,25,49,31): warning CS0649: Field 'Product._price' is never assigned to, and will always have its default value 0
+1>C:\Users\ashton.harris\Source\Repos\ITSE1430\Classwork\Section2\Nile\Product.cs(50,22,50,37): warning CS0169: The field 'Product._isDiscontinued' is never used
+1>  Nile -> C:\Users\ashton.harris\Source\Repos\ITSE1430\Classwork\Section2\Nile\bin\Debug\Nile.dll
+2>------ Build started: Project: Nile.Windows, Configuration: Debug Any CPU ------
+2>  Nile.Windows -> C:\Users\ashton.harris\Source\Repos\ITSE1430\Classwork\Section2\Nile.Windows\bin\Debug\Nile.Windows.exe
+========== Build: 2 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
