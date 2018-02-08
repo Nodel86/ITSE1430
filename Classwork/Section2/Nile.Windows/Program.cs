@@ -1,6 +1,5 @@
 ﻿using System;
-
-sing System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace Nile.Windows
 {
