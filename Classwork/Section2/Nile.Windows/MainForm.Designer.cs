@@ -100,7 +100,7 @@
 
             this._miFileExit.Name = "_miFileExit";
 
-            this._miFileExit.Size = new System.Drawing.Size(152, 22);
+            this._miFileExit.Size = new System.Drawing.Size(92, 22);
 
             this._miFileExit.Text = "E&xit";
 
@@ -138,7 +138,7 @@
 
             this._miProductAdd.ShortcutKeys = System.Windows.Forms.Keys.Insert;
 
-            this._miProductAdd.Size = new System.Drawing.Size(152, 22);
+            this._miProductAdd.Size = new System.Drawing.Size(141, 22);
 
             this._miProductAdd.Text = "&Add";
 
@@ -152,7 +152,7 @@
 
             this._miProductEdit.Name = "_miProductEdit";
 
-            this._miProductEdit.Size = new System.Drawing.Size(152, 22);
+            this._miProductEdit.Size = new System.Drawing.Size(141, 22);
 
             this._miProductEdit.Text = "&Edit";
 
@@ -166,7 +166,7 @@
 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
 
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
 
             // 
 
@@ -178,7 +178,7 @@
 
             this._miProductRemove.ShortcutKeys = System.Windows.Forms.Keys.Delete;
 
-            this._miProductRemove.Size = new System.Drawing.Size(152, 22);
+            this._miProductRemove.Size = new System.Drawing.Size(141, 22);
 
             this._miProductRemove.Text = "&Remove";
 
@@ -210,7 +210,7 @@
 
             this._miHelpAbout.ShortcutKeys = System.Windows.Forms.Keys.F1;
 
-            this._miHelpAbout.Size = new System.Drawing.Size(152, 22);
+            this._miHelpAbout.Size = new System.Drawing.Size(126, 22);
 
             this._miHelpAbout.Text = "About";
 

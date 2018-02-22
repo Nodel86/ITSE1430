@@ -27,12 +27,11 @@ namespace Nile
 
 
         //Using auto property here
-        public decimal Price
-        {
+        public decimal Price {get; set; } = 0;
+        
             // get { return _price; }
             // set { _price = value; }
-            get; set;
-        } = 0;
+       
 
        // public int ShowingOffAccessibility
        //{
