@@ -65,7 +65,7 @@ namespace Nile.Data.Memory
 
             //TODO: Clone the object
              product.Id = _nextId++;
-            _products.Add = (Clone(product));
+            _products.Add (Clone(product));
 
             message = null;
 
