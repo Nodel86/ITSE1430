@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieLib.Windows", "MovieLib.Windows\MovieLib.Windows.csproj", "{F925FF5E-F96D-4884-8AA8-9D098C8FA4BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieLib", "MovieLib\MovieLib.csproj", "{6D1CF381-B9BD-44FB-A592-6B7C59849163}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F925FF5E-F96D-4884-8AA8-9D098C8FA4BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F925FF5E-F96D-4884-8AA8-9D098C8FA4BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F925FF5E-F96D-4884-8AA8-9D098C8FA4BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F925FF5E-F96D-4884-8AA8-9D098C8FA4BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D1CF381-B9BD-44FB-A592-6B7C59849163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D1CF381-B9BD-44FB-A592-6B7C59849163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D1CF381-B9BD-44FB-A592-6B7C59849163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D1CF381-B9BD-44FB-A592-6B7C59849163}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {006D1399-4076-4835-9424-5A096B9A14DF}
+	EndGlobalSection
+EndGlobal
