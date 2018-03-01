@@ -3,30 +3,31 @@
   partial class ProductDetailForm
 
     {
-
         /// <summary>
         /// Required designer variable.
         /// </summary>
-     private System.ComponentModel.IContainer components = null;
-        /// <summary>
-       /// Clean up any resources being used.
-       /// </summary>
-      /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        private System.ComponentModel.IContainer components = null;
 
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose( bool disposing )
         {
-        if (disposing && (components != null))
-             {
-               components.Dispose();
-              }
-           base.Dispose(disposing);
-         }
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
         #region Windows Form Designer generated code
+
         /// <summary>
-       /// Required method for Designer support - do not modify
-       /// the contents of this method with the code editor.
-      /// </summary>
-       private void InitializeComponent()
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             this._txtName = new System.Windows.Forms.TextBox();
@@ -44,7 +45,7 @@
             // 
             // _txtName
             // 
-            this._txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this._txtName.Location = new System.Drawing.Point(81, 35);
             this._txtName.Name = "_txtName";
@@ -54,8 +55,8 @@
             // 
             // _txtDescription
             // 
-            this._txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this._txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this._txtDescription.Location = new System.Drawing.Point(81, 61);
             this._txtDescription.Multiline = true;
@@ -137,6 +138,7 @@
             // 
             // _errorProvider
             // 
+            this._errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this._errorProvider.ContainerControl = this;
             // 
             // ProductDetailForm
@@ -166,26 +168,20 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
-       }
-          #endregion
+        }
+
+        #endregion
+
         private System.Windows.Forms.TextBox _txtName;
-
         private System.Windows.Forms.TextBox _txtDescription;
-
         private System.Windows.Forms.TextBox _txtPrice;
-
         private System.Windows.Forms.CheckBox _chkIsDiscontinued;
-
         private System.Windows.Forms.Button _btnCancel;
-
         private System.Windows.Forms.Button _btnSave;
-
         private System.Windows.Forms.Label label1;
-
         private System.Windows.Forms.Label label2;
-
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ErrorProvider _errorProvider;
     }
+}
 
-}  
