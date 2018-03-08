@@ -7,14 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Nile.Data;
 using Nile.Data.Memory;
 
 namespace Nile.Windows
 
 {
-
     public partial class MainForm : Form
-
     {
         public MainForm()
         {
@@ -60,7 +59,7 @@ namespace Nile.Windows
 
         private void OnProductEdit( object sender, EventArgs e )
         {
-            //Get the selected product
+            //Get selected product
             var product = GetSelectedProduct();
             if (product == null)
                 return;
@@ -78,7 +77,7 @@ namespace Nile.Windows
 
             //Update the product
             form.Product.Id = product.Id;
-            _database.Edit(form.Product, out var message);
+            _database.Update(form.Product, out var message);
             if (!String.IsNullOrEmpty(message))
                 MessageBox.Show(message);
 
@@ -106,26 +105,29 @@ namespace Nile.Windows
             RefreshUI();
         }
 
-        private Product GetSelectedProduct()
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-                return dataGridView1.SelectedRows[0].DataBoundItem as Product;
-
-            return null;
-        }
         private void OnHelpAbout( object sender, EventArgs e )
         {
             MessageBox.Show(this, "Not implemented", "Help About", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
         #endregion
 
+        private Product GetSelectedProduct()
+        {
+            //Get the first selected row in the grid, if any
+            if (dataGridView1.SelectedRows.Count > 0)
+                return dataGridView1.SelectedRows[0].DataBoundItem as Product;
+
+            return null;
+        }
+
         private void RefreshUI()
         {
             //Get products
             var products = _database.GetAll();
+            //products[0].Name = "Product A";
 
             //Bind to grid
-            dataGridView1.DataSource = products;
+            dataGridView1.DataSource =new List<Product>(products);
         }
 
         private bool ShowConfirmation( string message, string title )
@@ -135,6 +137,6 @@ namespace Nile.Windows
                            == DialogResult.Yes;
         }
 
-        private MemoryProductDatabase _database = new MemoryProductDatabase();
+        private IProductDatabase _database = new MemoryProductDatabase();
     }
 }

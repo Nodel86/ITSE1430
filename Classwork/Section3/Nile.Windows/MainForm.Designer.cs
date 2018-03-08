@@ -41,14 +41,13 @@
             this._miHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.iPhoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.actualPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isDiscontinuedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -78,7 +77,7 @@
             // _miFileExit
             // 
             this._miFileExit.Name = "_miFileExit";
-            this._miFileExit.Size = new System.Drawing.Size(152, 22);
+            this._miFileExit.Size = new System.Drawing.Size(92, 22);
             this._miFileExit.Text = "E&xit";
             this._miFileExit.Click += new System.EventHandler(this.OnFileExit);
             // 
@@ -97,29 +96,27 @@
             // 
             this._miProductAdd.Name = "_miProductAdd";
             this._miProductAdd.ShortcutKeys = System.Windows.Forms.Keys.Insert;
-            this._miProductAdd.Size = new System.Drawing.Size(152, 22);
+            this._miProductAdd.Size = new System.Drawing.Size(141, 22);
             this._miProductAdd.Text = "&Add";
             this._miProductAdd.Click += new System.EventHandler(this.OnProductAdd);
             // 
             // _miProductEdit
             // 
             this._miProductEdit.Name = "_miProductEdit";
-            this._miProductEdit.Size = new System.Drawing.Size(152, 22);
-            this._miProductEdit.Text = "&Edit";
+            this._miProductEdit.Size = new System.Drawing.Size(141, 22);
+            this._miProductEdit.Text = "&Update";
             this._miProductEdit.Click += new System.EventHandler(this.OnProductEdit);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
             // 
             // _miProductRemove
             // 
-            this._miProductRemove.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.iPhoneToolStripMenuItem});
             this._miProductRemove.Name = "_miProductRemove";
             this._miProductRemove.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this._miProductRemove.Size = new System.Drawing.Size(152, 22);
+            this._miProductRemove.Size = new System.Drawing.Size(141, 22);
             this._miProductRemove.Text = "&Remove";
             this._miProductRemove.Click += new System.EventHandler(this.OnProductRemove);
             // 
@@ -135,7 +132,7 @@
             // 
             this._miHelpAbout.Name = "_miHelpAbout";
             this._miHelpAbout.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this._miHelpAbout.Size = new System.Drawing.Size(152, 22);
+            this._miHelpAbout.Size = new System.Drawing.Size(126, 22);
             this._miHelpAbout.Text = "About";
             this._miHelpAbout.Click += new System.EventHandler(this.OnHelpAbout);
             // 
@@ -157,11 +154,9 @@
             this.dataGridView1.Size = new System.Drawing.Size(707, 350);
             this.dataGridView1.TabIndex = 1;
             // 
-            // iPhoneToolStripMenuItem
+            // productBindingSource
             // 
-            this.iPhoneToolStripMenuItem.Name = "iPhoneToolStripMenuItem";
-            this.iPhoneToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
-            this.iPhoneToolStripMenuItem.Text = "iPhone";
+            this.productBindingSource.DataSource = typeof(Nile.Product);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -199,10 +194,6 @@
             this.isDiscontinuedDataGridViewCheckBoxColumn.DataPropertyName = "IsDiscontinued";
             this.isDiscontinuedDataGridViewCheckBoxColumn.HeaderText = "IsDiscontinued";
             this.isDiscontinuedDataGridViewCheckBoxColumn.Name = "isDiscontinuedDataGridViewCheckBoxColumn";
-            // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataSource = typeof(Nile.Product);
             // 
             // MainForm
             // 
@@ -246,8 +237,5 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn isDiscontinuedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.BindingSource productBindingSource;
         private System.Windows.Forms.BindingSource bindingSource1;
-        private System.Windows.Forms.ToolStripMenuItem iPhoneToolStripMenuItem;
     }
-}   
-
-
+}

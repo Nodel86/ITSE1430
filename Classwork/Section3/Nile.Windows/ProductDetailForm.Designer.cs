@@ -1,7 +1,6 @@
 ﻿namespace Nile.Windows
 {
-  partial class ProductDetailForm
-
+    partial class ProductDetailForm
     {
         /// <summary>
         /// Required designer variable.
@@ -184,4 +183,3 @@
         private System.Windows.Forms.ErrorProvider _errorProvider;
     }
 }
-
