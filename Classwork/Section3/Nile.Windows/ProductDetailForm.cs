@@ -25,7 +25,7 @@ namespace Nile.Windows
             Text = title;
         }
 
-        public ProductDetailForm( Product product ) : this("Update Product")
+        public ProductDetailForm( Product product ) : this("Edit Product")
         {
             Product = product;
         }
@@ -71,12 +71,6 @@ namespace Nile.Windows
             };
 
             //Validate product using IValidatableObject
-            //var message = product.Validate();
-            //if (!String.IsNullOrEmpty(message))
-            //{
-            //    DisplayError(message);
-            //    return;
-            //};
             var errors = ObjectValidator.Validate(product);
             if (errors.Count() > 0)
             {

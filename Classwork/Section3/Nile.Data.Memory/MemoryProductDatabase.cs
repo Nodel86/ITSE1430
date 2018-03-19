@@ -58,33 +58,65 @@ namespace Nile.Data.Memory
             //_products.Add(product);
         }
 
-        /// <summary>Add a new product.</summary>
-        /// <param name="product">The product to add.</param>
-        /// <param name="message">Error message.</param>
-        /// <returns>The added product.</returns>
-        /// <remarks>
-        /// Returns an error if product is null, invalid or if a product
-        /// with the same name already exists.
-        /// </remarks>
         protected override Product AddCore( Product product )
         {
-           
             // Clone the object
             product.Id = _nextId++;
             _products.Add(Clone(product));
-            
 
             // Return a copy
             return product;
         }
 
+        protected override Product GetCore( int id )
+        {
+            //for (var index = 0; index < _products.Length; ++index)
+            foreach (var product in _products)
+            {
+                if (product.Id == id)
+                    return product;
+            };
+
+            return null;
+        }
+
         protected override IEnumerable<Product> GetAllCore()
         {
+            //Iterator syntax
+            foreach (var product in _products)
+            {
+                if (product != null)
+                    yield return Clone(product);
+            };
+        }
 
+        //public IEnumerable<Product> GetAll ()
+        //{
+        //    //Return a copy so caller cannot change the underlying data
+        //    var items = new List<Product>();
 
-            private object GetProductByName( string name )
+        //    //for (var index = 0; index < _products.Length; ++index)
+        //    foreach (var product in _products)
+        //    {
+        //        if (product != null)                
+        //            items.Add(Clone(product));
+        //    };
+
+        //    return items;
+        //}
+
+        /// <summary>Removes a product.</summary>
+        /// <param name="id">The product ID.</param>
+        public void Remove( int id )
         {
-            throw new NotImplementedException();
+            //TODO: Return an error if id <= 0
+
+            if (id > 0)
+            {
+                var existing = GetById(id);
+                if (existing != null)
+                    _products.Remove(existing);
+            };
         }
 
         /// <summary>Edits an existing product.</summary>
@@ -114,8 +146,7 @@ namespace Nile.Data.Memory
                 return null;
             };
 
-            //TODO: Verify unique product except current product
-            //Find existing
+            // Verify unique product
             var existing = GetProductByName(product.Name);
             if (existing != null && existing.Id != product.Id)
             {
@@ -138,52 +169,6 @@ namespace Nile.Data.Memory
 
             //Return a copy
             return product;
-        }
-
-        /// <summary>Gets all products.</summary>
-        /// <returns>The list of products.</returns>
-        public IEnumerable<Product> GetAll()
-        {
-            
-            //for (var index = 0; index < _products.Length; ++index)
-            foreach (var product in _products)
-            {
-                if (product != null)
-                    yield return Clone(product);
-            };
-
-            
-        }
-
-
-
-        // public IEnumerable<Product> GetAll()
-        //  {
-        //  //Return a copy so caller cannot change the underlying data
-        //   var items = new List<Product>();
-
-        //   //for (var index = 0; index < _products.Length; ++index)
-        //    foreach (var product in _products)
-        //    {
-        //         if (product != null)
-        //            items.Add(Clone(product));
-        //    };
-
-        //    return items;
-        //  }
-
-        /// <summary>Removes a product.</summary>
-        /// <param name="id">The product ID.</param>
-        public void Remove( int id )
-        {
-            //TODO: Return an error if id <= 0
-
-            if (id > 0)
-            {
-                var existing = GetById(id);
-                if (existing != null)
-                    _products.Remove(existing);
-            };
         }
 
         #region Private Members
@@ -219,19 +204,8 @@ namespace Nile.Data.Memory
         //}
 
         //Find a product by its ID
-        private Product GetById( int id )
-        {
-            //for (var index = 0; index < _products.Length; ++index)
-            foreach (var product in _products)
-            {
-                if (product.Id == id)
-                    return product;
-            };
 
-            return null;
-        }
-
-        private Product GetProductBYName( string name )
+        private Product GetProductByName( string name )
         {
             foreach (var product in _products)
             {

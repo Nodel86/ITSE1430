@@ -6,58 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Nile.Data.Memory
+namespace Nile.Data
 {
     /// <summary>Provides an in-memory product database.</summary>
-    public class MemoryProductDatabase : IProductDatabase
+    public abstract class ProductDatabase : IProductDatabase
     {
-        /// <summary>Initializes an instance of the <see cref="MemoryProductDatabase"/> class.</summary>
-        public MemoryProductDatabase()
-        {
-            //Array version
-            //var prods = new Product[]
-            //var prods = new []
-            //    {
-            //        new Product(),
-            //        new Product()
-            //    };
-
-            //_products = new Product[25];
-            _products = new List<Product>()
-            {
-                new Product() { Id = _nextId++, Name = "iPhone X",
-                                IsDiscontinued = true, Price = 1500, },
-                new Product() { Id = _nextId++, Name = "Windows Phone",
-                                IsDiscontinued = true, Price = 15, },
-                new Product() { Id = _nextId++, Name = "Samsung S8",
-                                IsDiscontinued = false, Price = 800 }
-            };
-
-            //var product = new Product() {
-            //    Id = _nextId++,
-            //    Name = "iPhone X",
-            //    IsDiscontinued = true,
-            //    Price = 1500,
-            //};
-            //_products.Add(product);
-
-            //product = new Product() {
-            //    Id = _nextId++,
-            //    Name = "Windows Phone",
-            //    IsDiscontinued = true,
-            //    Price = 15,
-            //};
-            //_products.Add(product);
-
-            //product = new Product {
-            //    Id = _nextId++,
-            //    Name = "Samsung S8",
-            //    IsDiscontinued = false,
-            //    Price = 800
-            //};
-            //_products.Add(product);
-        }
-
         /// <summary>Add a new product.</summary>
         /// <param name="product">The product to add.</param>
         /// <param name="message">Error message.</param>
@@ -88,34 +41,49 @@ namespace Nile.Data.Memory
             // Verify unique product
             var existing = GetProductByName(product.Name);
             if (existing != null)
-
             {
                 message = "Product already exists.";
                 return null;
             };
 
-           
-
-            //Add
-            //var index = FindEmptyProductIndex();
-            //if (index < 0)
-            //{
-            //    message = "Out of memory";
-            //    return null;
-            //};
-
-            // Clone the object
-            product.Id = _nextId++;
-            _products.Add(Clone(product));
             message = null;
-
-            // Return a copy
-            return product;
+            return AddCore(product);
         }
 
-        private object GetProductByName( string name )
+        /// <summary>Gets all products.</summary>
+        /// <returns>The list of products.</returns>
+        public IEnumerable<Product> GetAll()
         {
-            throw new NotImplementedException();
+            return GetAllCore();
+        }
+
+        //public IEnumerable<Product> GetAll ()
+        //{
+        //    //Return a copy so caller cannot change the underlying data
+        //    var items = new List<Product>();
+
+        //    //for (var index = 0; index < _products.Length; ++index)
+        //    foreach (var product in _products)
+        //    {
+        //        if (product != null)                
+        //            items.Add(Clone(product));
+        //    };
+
+        //    return items;
+        //}
+
+        /// <summary>Removes a product.</summary>
+        /// <param name="id">The product ID.</param>
+        public void Remove( int id )
+        {
+            //TODO: Return an error if id <= 0
+
+            if (id > 0)
+            {
+                var existing = GetById(id);
+                if (existing != null)
+                    _products.Remove(existing);
+            };
         }
 
         /// <summary>Edits an existing product.</summary>
@@ -145,8 +113,7 @@ namespace Nile.Data.Memory
                 return null;
             };
 
-            //TODO: Verify unique product except current product
-            //Find existing
+            // Verify unique product
             var existing = GetProductByName(product.Name);
             if (existing != null && existing.Id != product.Id)
             {
@@ -171,54 +138,14 @@ namespace Nile.Data.Memory
             return product;
         }
 
-        /// <summary>Gets all products.</summary>
-        /// <returns>The list of products.</returns>
-        public IEnumerable<Product> GetAll()
-        {
-
-            return GetAllCore();
-            
-        }
-
-
-
-        // public IEnumerable<Product> GetAll()
-        //  {
-        //  //Return a copy so caller cannot change the underlying data
-        //   var items = new List<Product>();
-
-        //   //for (var index = 0; index < _products.Length; ++index)
-        //    foreach (var product in _products)
-        //    {
-        //         if (product != null)
-        //            items.Add(Clone(product));
-        //    };
-
-        //    return items;
-        //  }
-
-        /// <summary>Removes a product.</summary>
-        /// <param name="id">The product ID.</param>
-        public void Remove( int id )
-        {
-            //TODO: Return an error if id <= 0
-
-            if (id > 0)
-            {
-                var existing = GetById(id);
-                if (existing != null)
-                    _products.Remove(existing);
-            };
-        }
-
-        protected abstract IEnumerable<Product> GetAllCore();
         protected abstract Product AddCore( Product product );
+        protected abstract IEnumerable<Product> GetAllCore();
+        protected abstract Product GetCore( int id );
 
-        
-            #region Private Members
+        #region Private Members
 
-            //Clone a product
-            private Product Clone( Product item )
+        //Clone a product
+        private Product Clone( Product item )
         {
             var newProduct = new Product();
             Copy(newProduct, item);
@@ -260,7 +187,7 @@ namespace Nile.Data.Memory
             return null;
         }
 
-        private Product GetProductBYName( string name )
+        private Product GetProductByName( string name )
         {
             foreach (var product in _products)
             {

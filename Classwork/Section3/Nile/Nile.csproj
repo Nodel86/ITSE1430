@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IProductDatabase.cs" />
+    <Compile Include="data\IProductDatabase.cs" />
     <Compile Include="data\ProductDatabase.cs" />
     <Compile Include="ObjectValidator.cs" />
     <Compile Include="Product.cs" />

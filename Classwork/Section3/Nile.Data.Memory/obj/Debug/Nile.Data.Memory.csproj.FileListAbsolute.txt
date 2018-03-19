@@ -6,3 +6,5 @@ C:\Users\ashton.harris\source\repos\ITSE1430\Classwork\Section3\Nile.Data.Memory
 C:\Users\ashton.harris\source\repos\ITSE1430\Classwork\Section3\Nile.Data.Memory\obj\Debug\Nile.Data.Memory.csproj.CoreCompileInputs.cache
 C:\Users\ashton.harris\source\repos\ITSE1430\Classwork\Section3\Nile.Data.Memory\obj\Debug\Nile.Data.Memory.dll
 C:\Users\ashton.harris\source\repos\ITSE1430\Classwork\Section3\Nile.Data.Memory\obj\Debug\Nile.Data.Memory.pdb
+C:\Users\brain\Source\Repos\ITSE1430\Classwork\Section3\Nile.Data.Memory\obj\Debug\Nile.Data.Memory.csprojResolveAssemblyReference.cache
+C:\Users\brain\Source\Repos\ITSE1430\Classwork\Section3\Nile.Data.Memory\obj\Debug\Nile.Data.Memory.csproj.CoreCompileInputs.cache
