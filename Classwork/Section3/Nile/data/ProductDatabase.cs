@@ -39,7 +39,7 @@ namespace Nile.Data
             };
 
             // Verify unique product
-            var existing = GetProductByName(product.Name);
+            var existing = GetProductByNameCore(product.Name);
             if (existing != null)
             {
                 message = "Product already exists.";
@@ -57,21 +57,6 @@ namespace Nile.Data
             return GetAllCore();
         }
 
-        //public IEnumerable<Product> GetAll ()
-        //{
-        //    //Return a copy so caller cannot change the underlying data
-        //    var items = new List<Product>();
-
-        //    //for (var index = 0; index < _products.Length; ++index)
-        //    foreach (var product in _products)
-        //    {
-        //        if (product != null)                
-        //            items.Add(Clone(product));
-        //    };
-
-        //    return items;
-        //}
-
         /// <summary>Removes a product.</summary>
         /// <param name="id">The product ID.</param>
         public void Remove( int id )
@@ -80,9 +65,8 @@ namespace Nile.Data
 
             if (id > 0)
             {
-                var existing = GetById(id);
-                if (existing != null)
-                    _products.Remove(existing);
+                RemoveCore(id);
+
             };
         }
 
@@ -96,6 +80,7 @@ namespace Nile.Data
         /// </remarks>
         public Product Update( Product product, out string message )
         {
+            message = "";
             //Check for null
             if (product == null)
             {
@@ -114,7 +99,7 @@ namespace Nile.Data
             };
 
             // Verify unique product
-            var existing = GetProductByName(product.Name);
+            var existing = GetProductByNameCore(product.Name);
             if (existing != null && existing.Id != product.Id)
             {
                 message = "Product already exists.";
@@ -122,36 +107,25 @@ namespace Nile.Data
             };
 
             //Find existing
-            existing = existing ?? GetById(product.Id);
+            existing = existing ?? GetCore(product.Id);
             if (existing == null)
             {
                 message = "Product not found.";
                 return null;
             };
 
-            // Clone the object
-            //_products[existingIndex] = Clone(product);
-            Copy(existing, product);
-            message = null;
-
-            //Return a copy
-            return product;
+            return UpdateCore(product);
         }
 
         protected abstract Product AddCore( Product product );
         protected abstract IEnumerable<Product> GetAllCore();
         protected abstract Product GetCore( int id );
+        protected abstract Product UpdateCore( Product product );
+        protected abstract void RemoveCore( int id );
 
         #region Private Members
 
-        //Clone a product
-        private Product Clone( Product item )
-        {
-            var newProduct = new Product();
-            Copy(newProduct, item);
 
-            return newProduct;
-        }
 
         //Copy a product from one object to another
         private void Copy( Product target, Product source )
@@ -175,32 +149,11 @@ namespace Nile.Data
         //}
 
         //Find a product by its ID
-        private Product GetById( int id )
-        {
-            //for (var index = 0; index < _products.Length; ++index)
-            foreach (var product in _products)
-            {
-                if (product.Id == id)
-                    return product;
-            };
 
-            return null;
-        }
+        protected abstract Product GetProductByNameCore( string name );
 
-        private Product GetProductByName( string name )
-        {
-            foreach (var product in _products)
-            {
-                //product.Name.CompareTo
-                if (String.Compare(product.Name, name, true) == 0)
-                    return product;
-            };
 
-            return null;
-        }
 
-        private readonly List<Product> _products = new List<Product>();
-        private int _nextId = 1;
 
         #endregion
     }
