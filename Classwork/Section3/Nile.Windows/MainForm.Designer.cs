@@ -42,12 +42,12 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._miHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isDiscontinuedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
@@ -61,7 +61,7 @@
             this.helpToolStripMenuItem});
             this._mainMenu.Location = new System.Drawing.Point(0, 0);
             this._mainMenu.Name = "_mainMenu";
-            this._mainMenu.Size = new System.Drawing.Size(662, 24);
+            this._mainMenu.Size = new System.Drawing.Size(720, 24);
             this._mainMenu.TabIndex = 0;
             this._mainMenu.Text = "menuStrip1";
             // 
@@ -152,6 +152,7 @@
             this.idDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.productBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(0, 24);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -160,13 +161,10 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowCellErrors = false;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(662, 350);
+            this.dataGridView1.Size = new System.Drawing.Size(720, 272);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataSource = typeof(Nile.Product);
-            this.productBindingSource.CurrentChanged += new System.EventHandler(this.productBindingSource_CurrentChanged);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnCellDoubleClick);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnCellKeyDown);
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -191,7 +189,7 @@
             // priceDataGridViewTextBoxColumn
             // 
             this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.Format = "N2";
             dataGridViewCellStyle2.NullValue = null;
             this.priceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.priceDataGridViewTextBoxColumn.FillWeight = 75F;
@@ -218,11 +216,15 @@
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Visible = false;
             // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataSource = typeof(Nile.Product);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 374);
+            this.ClientSize = new System.Drawing.Size(720, 296);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this._mainMenu);
             this.MainMenuStrip = this._mainMenu;

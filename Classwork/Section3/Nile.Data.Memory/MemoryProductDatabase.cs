@@ -11,52 +11,53 @@ namespace Nile.Data.Memory
     /// <summary>Provides an in-memory product database.</summary>
     public class MemoryProductDatabase : ProductDatabase
     {
-        /// <summary>Initializes an instance of the <see cref="MemoryProductDatabase"/> class.</summary>
-        public MemoryProductDatabase()
-        {
-            //Array version
-            //var prods = new Product[]
-            //var prods = new []
-            //    {
-            //        new Product(),
-            //        new Product()
-            //    };
 
-            //_products = new Product[25];
-            _products = new List<Product>()
-            {
-                new Product() { Id = _nextId++, Name = "iPhone X",
-                                IsDiscontinued = true, Price = 1500, },
-                new Product() { Id = _nextId++, Name = "Windows Phone",
-                                IsDiscontinued = true, Price = 15, },
-                new Product() { Id = _nextId++, Name = "Samsung S8",
-                                IsDiscontinued = false, Price = 800 }
-            };
+        ///// <summary>Initializes an instance of the <see cref="MemoryProductDatabase"/> class.</summary>
+        //public MemoryProductDatabase()
+        //{
+        //    //Array version
+        //    //var prods = new Product[]
+        //    //var prods = new []
+        //    //    {
+        //    //        new Product(),
+        //    //        new Product()
+        //    //    };
 
-            //var product = new Product() {
-            //    Id = _nextId++,
-            //    Name = "iPhone X",
-            //    IsDiscontinued = true,
-            //    Price = 1500,
-            //};
-            //_products.Add(product);
+        //    //_products = new Product[25];
+        //    _products = new List<Product>() 
+        //    {
+        //        new Product() { Id = _nextId++, Name = "iPhone X",
+        //                        IsDiscontinued = true, Price = 1500, },
+        //        new Product() { Id = _nextId++, Name = "Windows Phone",
+        //                        IsDiscontinued = true, Price = 15, },
+        //        new Product() { Id = _nextId++, Name = "Samsung S8",
+        //                        IsDiscontinued = false, Price = 800 }
+        //    };
 
-            //product = new Product() {
-            //    Id = _nextId++,
-            //    Name = "Windows Phone",
-            //    IsDiscontinued = true,
-            //    Price = 15,
-            //};
-            //_products.Add(product);
+        //    //var product = new Product() {
+        //    //    Id = _nextId++,
+        //    //    Name = "iPhone X",
+        //    //    IsDiscontinued = true,
+        //    //    Price = 1500,
+        //    //};
+        //    //_products.Add(product);
 
-            //product = new Product {
-            //    Id = _nextId++,
-            //    Name = "Samsung S8",
-            //    IsDiscontinued = false,
-            //    Price = 800
-            //};
-            //_products.Add(product);
-        }
+        //    //product = new Product() {
+        //    //    Id = _nextId++,
+        //    //    Name = "Windows Phone",
+        //    //    IsDiscontinued = true,
+        //    //    Price = 15,
+        //    //};
+        //    //_products.Add(product);
+
+        //    //product = new Product {
+        //    //    Id = _nextId++,
+        //    //    Name = "Samsung S8",
+        //    //    IsDiscontinued = false,
+        //    //    Price = 800
+        //    //};
+        //    //_products.Add(product);
+        //}
 
         protected override Product AddCore( Product product )
         {
@@ -92,24 +93,33 @@ namespace Nile.Data.Memory
 
         protected override void RemoveCore( int id )
         {
-            if (id > 0)
-            {
-                var existing = GetCore(id);
-                if (existing != null)
-                    _products.Remove(existing);
-            };
+            var existing = GetCore(id);
+            if (existing != null)
+                _products.Remove(existing);
         }
 
         protected override Product UpdateCore( Product product )
         {
             var existing = GetCore(product.Id);
+
             // Clone the object
             //_products[existingIndex] = Clone(product);
             Copy(existing, product);
 
-
             //Return a copy
             return product;
+        }
+
+        protected override Product GetProductByNameCore( string name )
+        {
+            foreach (var product in _products)
+            {
+                //product.Name.CompareTo
+                if (String.Compare(product.Name, name, true) == 0)
+                    return product;
+            };
+
+            return null;
         }
 
         #region Private Members
@@ -145,18 +155,6 @@ namespace Nile.Data.Memory
         //}
 
         //Find a product by its ID
-
-        protected override Product GetProductByNameCore( string name )
-        {
-            foreach (var product in _products)
-            {
-                //product.Name.CompareTo
-                if (String.Compare(product.Name, name, true) == 0)
-                    return product;
-            };
-
-            return null;
-        }
 
         private readonly List<Product> _products = new List<Product>();
         private int _nextId = 1;
