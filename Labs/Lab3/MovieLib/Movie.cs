@@ -1,6 +1,7 @@
 ﻿/*
  * ITSE 1430
- * Sample implementation
+ * Ashton Harris
+ * Lab3
  */
 using System;
 using System.Collections.Generic;
