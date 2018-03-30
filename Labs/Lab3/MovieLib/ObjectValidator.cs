@@ -5,6 +5,8 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +21,7 @@ namespace MovieLib
 
         /// <summary>Validates an object and all properties.</summary>
 
-        /// <param name="value">The object to validate.</param>
+        /// <param title="value">The object to validate.</param>
 
         /// <returns>The validation results.</returns>
 
