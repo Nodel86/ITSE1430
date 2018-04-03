@@ -74,16 +74,21 @@ namespace Nile.Windows
                 return;
 
             //Add to database
-            _database.Add(form.Product, out var message);
-            if (!String.IsNullOrEmpty(message))
-                MessageBox.Show(message);
-
+            // _database.Add(form.Product);
+            try
+            {
+                _database.Add(null);
+            }catch (NotImplementedException)
+            {
+                MessageBox.Show("not implemented yet");
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            };
+           
+          
             RefreshUI();
-            //Find empty array element
-            //var index = FindEmptyProductIndex();
-            //if (index >= 0)
-            //_products[index] = form.Product;                    
-        }
+            
 
         private void OnProductEdit( object sender, EventArgs e )
         {
@@ -127,10 +132,17 @@ namespace Nile.Windows
             if (!ShowConfirmation("Are you sure?", "Remove Product"))
                 return;
 
-            //Remove product
-            _database.Remove(product.Id);
+                //Remove product
+                try
+                {
+                    _database.Remove(product.Id);
+                } catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                };
 
-            RefreshUI();
+
+                RefreshUI();
         }
 
         //Helper method to handle editing products
@@ -143,11 +155,15 @@ namespace Nile.Windows
 
             //Update the product
             form.Product.Id = product.Id;
-            _database.Update(form.Product, out var message);
-            if (!String.IsNullOrEmpty(message))
-                MessageBox.Show(message);
+                try
+                {
+                    _database.Update(form.Product, out var message);
+                } catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                };
 
-            RefreshUI();
+                RefreshUI();
         }
 
         private Product GetSelectedProduct()
@@ -162,15 +178,18 @@ namespace Nile.Windows
 
         private void RefreshUI()
         {
-            //Get products
-            var products = _database.GetAll();
-            //products[0].Name = "Product A";
+                //Getproducts
+                IEnumerable<Product> products = null;
+                try
+                {
+                     products = _database.GetAll();
+                } catch (Exception)
+                {
+                    MessageBox.Show("Error loading products");
+                };
 
-            //Bind to grid
-            //productBindingSource.DataSource = new List<Product>(products);
-            //productBindingSource.DataSource = Enumerable.ToList(products);
-            productBindingSource.DataSource = products.ToList();
-            //dataGridView1.DataSource 
+               productBindingSource.DataSource = products?.ToList();
+           
         }
 
         private bool ShowConfirmation( string message, string title )
