@@ -39,22 +39,37 @@ namespace Nile.Data.Memory
         protected override Product GetCore( int id )
 
         {
+            //Option 4
+            return( from p in _products
+                      where p.Id == id
+                        select p).FirstOrDefault();
 
-            //for (var index = 0; index < _products.Length; ++index)
+            //option 3 LINQ
+            //var items = from p in _products
+            //          where p.Id == id
+            //            select p;
 
-            foreach (var product in _products)
-
-            {
-
-                if (product.Id == id)
-
-                    return product;
-
-            };
-
+            //  return items.FirstOrDefault();
 
 
-            return null;
+            //option 2 extension method
+            //return _products.FirstOrDefault(p => p.Id == id);
+
+
+            //option 1         
+            // foreach (var product in _products)
+
+            // {
+
+            //   if (product.Id == id)
+
+            //       return product;
+
+            //  };
+
+
+
+            // return null;
 
         }
 
@@ -64,17 +79,24 @@ namespace Nile.Data.Memory
 
         {
 
-            //Iterator syntax
+            //option 3 - LINQ
+            return from p in _products
+                   select Clone(p);
 
-            foreach (var product in _products)
 
-            {
+           // return _products.Select(p => Clone(p));
+           
+            
+            //option 1
+           // foreach (var product in _products)
 
-                if (product != null)
+           // {
 
-                    yield return Clone(product);
+             //   if (product != null)
 
-            };
+             //       yield return Clone(product);
+
+           // };
 
         }
 
@@ -117,20 +139,32 @@ namespace Nile.Data.Memory
         protected override Product GetProductByNameCore( string name )
 
         {
+            //Option 3 -LINQ
+            return (from p in _products
+                   where String.Compare(p.Name, name, true) == 0
+                   select p).FirstOrDefault();
+            
+            
+            
+            
+            //Option 2- extension
+           //return _products.FirstOrDefault(p => String.Compare(p.Name, name, true) == 0);
+            
+            
+            //Option 1
+            //  foreach (var product in _products)
 
-            foreach (var product in _products)
+            // {
 
-            {
+            //    if (String.Compare(product.Name, name, true) == 0)
 
-                if (String.Compare(product.Name, name, true) == 0)
+            //         return product;
 
-                    return product;
-
-            };
+            //  };
 
 
 
-            return null;
+           // return null;
 
         }
 

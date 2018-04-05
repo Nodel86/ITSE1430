@@ -44,5 +44,11 @@
     <Compile Include="FileProductDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nile\Nile.csproj">
+      <Project>{f3b8dd6e-7216-496a-bd6a-bee83dbf9cd4}</Project>
+      <Name>Nile</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
