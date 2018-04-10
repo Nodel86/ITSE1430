@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -27,7 +28,10 @@ namespace Nile.Windows
         {
             base.OnLoad(e);
 
-            _database = new FileProductDatabase("products.csv");
+            // _database = new FileProductDatabase("products.csv");
+
+            var connString = ConfigurationManager.ConnectionStrings["NileDatabase"];
+            _database = new SqlProductDatabase(connString.ConnectionString);
 
             RefreshUI();
         }
