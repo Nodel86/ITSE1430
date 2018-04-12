@@ -44,18 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NileDatabase\InitializeProducts.PostDeployment.sql" />
-    <Content Include="NileDatabase\Stored Procedures\AddProduct.sql" />
-    <Content Include="NileDatabase\Stored Procedures\GetAllProducts.sql" />
-    <Content Include="NileDatabase\Stored Procedures\GetProduct.sql" />
-    <Content Include="NileDatabase\Stored Procedures\RemoveProduct.sql" />
-    <Content Include="NileDatabase\Stored Procedures\UpdateProduct.sql" />
-    <Content Include="NileDatabase\Tables\Products.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="NileDatabase\NileDatabase.sqlproj" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Nile\Nile.csproj">
       <Project>{f3b8dd6e-7216-496a-bd6a-bee83dbf9cd4}</Project>
       <Name>Nile</Name>
