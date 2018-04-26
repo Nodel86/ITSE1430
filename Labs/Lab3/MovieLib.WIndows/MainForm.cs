@@ -12,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MovieLib.Data;
+using MovieLib.Data.Memory;
 
 namespace MovieLib.Windows
 {
@@ -24,82 +26,195 @@ namespace MovieLib.Windows
 
         #region Event Handlers
 
-        private void OnFileExit ( object sende, EventArgs e )
+
+
+        private void OnFileExit ( object sender, EventArgs e )
         {
             Close();
         }
 
-        private void OnMovieAdd ( object sende, EventArgs e )
+        private void OnMovieAdd ( object sender, EventArgs e )
         {
             var form = new MovieDetailForm();
 
             if (form.ShowDialog(this) != DialogResult.OK)
                 return;
 
-            //Add the movie
-            _movie = form.Movie;
+            //Add to Database
+            _database.Add(form.Movie, out var message);
+
+            if (!String.IsNullOrEmpty(message))
+
+                MessageBox.Show(message);
+
+            RefreshUI();
+
+
         }
 
-        private void OnMovieEdit ( object sende, EventArgs e )
+        private void OnMovieEdit ( object sender, EventArgs e )
         {
-            //Check for no movie
-            if (!CheckForMovie())
+            //Get selected product
+
+            var movie = GetSelectedMovie();
+
+            if (movie == null)
+
+            {
+
+                MessageBox.Show(this, "No product selected", "Error",
+
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
 
-            var form = new MovieDetailForm();
-            form.Movie = CopyMovie(_movie);
+            };
 
-            if (form.ShowDialog(this) != DialogResult.OK)
-                return;
 
-            //Update the movie
-            _movie = form.Movie;
+
+            EditMovie(movie);
         }
 
-        private void OnMovieDelete ( object sende, EventArgs e )
+        private void EditMovie( Movie movie )
+
         {
-            //Check for no movie
-            if (!CheckForMovie())
+
+            var form = new MovieDetailForm(movie);
+
+            var result = form.ShowDialog(this);
+
+            if (result != DialogResult.OK)
+
                 return;
 
-            //Display a confirmation
-            if (MessageBox.Show(this, $"Are you sure you want to delete\r\n{_movie.Title}?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                return;
 
-            //Delete the movie
-            _movie = null;
+
+            //Update the product
+
+            form.Movie.Id = movie.Id;
+
+            _database.Update(form.Movie, out var message);
+
+            if (!String.IsNullOrEmpty(message))
+
+                MessageBox.Show(message);
+
+
+
+            RefreshUI();
+
         }
 
-        private void OnHelpAbout ( object sende, EventArgs e )
+        private void RefreshUI()
+
+        {
+
+            //Get products
+
+            var movies = _database.GetAll();
+
+            //products[0].Name = "Product A";
+
+
+
+            //Bind to grid
+
+            //productBindingSource.DataSource = new List<Product>(products);
+
+            //productBindingSource.DataSource = Enumerable.ToList(products);
+
+            movieBindingSource.DataSource = movies.ToList();
+
+            //dataGridView1.DataSource 
+
+        }
+
+        private void OnMovieRemove ( object sender, EventArgs e )
+        {
+            
+
+                //Get selected product
+
+                var movie = GetSelectedMovie();
+
+                if (movie == null)
+
+                {
+
+                    MessageBox.Show(this, "No movie selected", "Error",
+
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
+
+                };
+
+
+
+                DeleteMovie(movie);
+
+            
+        }
+
+        private void DeleteMovie( Movie movie )
+
+        {
+
+            if (!ShowConfirmation("Are you sure?", "Remove Product"))
+
+                return;
+
+
+
+            //Remove product
+
+            _database.Remove(movie.Id);
+
+
+
+            RefreshUI();
+
+        }
+        private void OnHelpAbout ( object sender, EventArgs e )
         {
             new AboutForm().ShowDialog(this);
         }
         #endregion
 
+        private Movie GetSelectedMovie()
+
+        {
+
+            //TODO: Use the binding source
+
+            //Get the first selected row in the grid, if any
+
+            if (dataGridView1.SelectedRows.Count > 0)
+
+                return dataGridView1.SelectedRows[0].DataBoundItem as Movie;
+
+
+
+            return null;
+
+        }
+
         #region Private Members
 
-        private bool CheckForMovie ()
-        {
-            //Check for no movie
-            if (_movie != null)
-                return true;
+       
+        private bool ShowConfirmation( string message, string title )
 
-            MessageBox.Show(this, "No movie defined.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return false;
+        {
+
+            return MessageBox.Show(this, message, title
+
+                             , MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+                           == DialogResult.Yes;
+
         }
 
-        private Movie CopyMovie ( Movie movie )
-        {
-            var newMovie = new Movie();
-            newMovie.Title = movie.Title;
-            newMovie.Description = movie.Description;
-            newMovie.Length = movie.Length;
-            newMovie.IsOwned = movie.IsOwned;
-
-            return newMovie;
-        }
-        
-        private Movie _movie;
+        private IMovieDatabase _database = new MemoryMovieDatabase();
         #endregion
     }
 }

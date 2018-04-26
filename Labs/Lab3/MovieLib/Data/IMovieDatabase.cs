@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MovieLib.Data
 {
-    public interface IMovieDatabase
+    public interface IMovieDatabase 
 
     {
 
@@ -37,7 +37,7 @@ namespace MovieLib.Data
 
         /// </remarks>
 
-        Movie Add( Movie movie );
+        Movie Add( Movie movie, out string message );
 
 
 
@@ -93,6 +93,6 @@ namespace MovieLib.Data
 
         /// </remarks>
 
-        Movie Update( Movie movie );
+        Movie Update( Movie movie, out string message );
     }
 }

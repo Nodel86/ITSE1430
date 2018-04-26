@@ -5,6 +5,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ namespace MovieLib
             set { _description = value; }
         }
 
+        public int Id { get; set; }
+
         /// <summary>Determines if the movie is owned or not.</summary>
         public bool IsOwned { get; set; }
 
@@ -34,6 +37,39 @@ namespace MovieLib
             set { _title = value; }
         }
 
+        internal object Validate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<ValidationResult> Validate( ValidationContext validationContext )
+
+        {
+
+            var errors = new List<ValidationResult>();
+
+
+
+            //Name is required
+
+            if (String.IsNullOrEmpty(_title))
+
+                errors.Add(new ValidationResult("Name cannot be empty",
+
+                             new[] { nameof(Title) }));
+
+             //Price >= 0
+            if (Length < 0)
+
+                errors.Add(new ValidationResult("Length must be >= 0",
+
+                            new[] { nameof(Length) }));
+
+
+
+            return errors;
+
+        }
         #region Private Members
 
         private string _title, _description;
