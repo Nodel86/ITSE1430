@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace MovieLib.Data.Memory
 {  /// <summary>Provides an in-memory product database.</summary>
 
-    public class MemoryMovieDatabase : IMovieDatabase
+    public class MemoryMovieDatabase : MovieDatabase
 
     {
 
@@ -22,7 +22,7 @@ namespace MovieLib.Data.Memory
 
             // Clone the object
 
-            movie.Title = _nextTitle++;
+            movie.Id = _nextId++;
 
             _movie.Add(Clone(movie));
 
@@ -36,7 +36,7 @@ namespace MovieLib.Data.Memory
 
 
 
-        protected override Movie GetCore( int name )
+        protected override Movie GetCore( int id )
 
         {
 
@@ -46,16 +46,15 @@ namespace MovieLib.Data.Memory
 
             {
 
-                string Title = null;
-                if (movie.Title == Title)
+                
+                if (movie.Id == id)
 
                     return movie;
 
             };
 
-
-
-            return null;
+           
+               return null;
 
         }
 
@@ -99,7 +98,7 @@ namespace MovieLib.Data.Memory
 
         {
 
-            var existing = GetCore(movie.Title);
+            var existing = GetCore(movie.Id);
 
 
 
@@ -184,25 +183,7 @@ namespace MovieLib.Data.Memory
 
         }
 
-        Movie IMovieDatabase.Add( Movie movie )
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<Movie> IMovieDatabase.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        void IMovieDatabase.Remove( int id )
-        {
-            throw new NotImplementedException();
-        }
-
-        Movie IMovieDatabase.Update( Movie movie )
-        {
-            throw new NotImplementedException();
-        }
+        
 
         void IMovieDatabase.Add( Movie movie, out object message )
         {

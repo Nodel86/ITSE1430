@@ -25,7 +25,7 @@ namespace MovieLib
 
         /// <returns>The validation results.</returns>
 
-        public static IEnumerable<ValidationResult> TryValidate( this IValidatableObject source )
+        public static IEnumerable<ValidationResult> Validate( this IValidatableObject source )
 
         {
 
@@ -43,9 +43,14 @@ namespace MovieLib
 
 
 
-       
-        }
+        public static void Validate( this IValidatableObject source )
 
-    }
+        {
+
+            var context = new ValidationContext(source);
+
+            Validator.ValidateObject(source, context, true);
+
+        }
 
 

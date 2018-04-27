@@ -20,6 +20,8 @@ namespace MovieLib
             public int Id { get; set; }
 
 
+        public int Id { get; set; }
+
         /// <summary>Determines if the movie is owned or not.</summary>
         public bool IsOwned { get; set; }
 
@@ -55,8 +57,6 @@ namespace MovieLib
 
                              new[] { nameof(Title) }));
         }
-
-
 
         #region Private Members
 

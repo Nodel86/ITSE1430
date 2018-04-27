@@ -15,93 +15,230 @@ using System.Windows.Forms;
 
 namespace MovieLib.Windows
 {
+    /// <summary>Provides a form for adding/editing <see cref="Product"/>.</summary>
+
     public partial class MovieDetailForm : Form
+
     {
-        public MovieDetailForm ( Movie movie )
+        public MovieDetailForm ()
         {
+
             InitializeComponent();
+
         }
 
-        public Movie Movie { get; set; }
 
-        protected override void OnLoad ( EventArgs e )
+
+        public MovieDetailForm( string title ) : this()
+
         {
+
+            Text = title;
+
+        }
+
+
+
+        public MovieDetailForm( Movie movie ) : this("Edit Movie")
+
+        {
+
+            Movie = movie;
+
+        }
+
+        #endregion
+
+
+
+        /// <summary>Gets or sets the product being edited.</summary>
+
+        public Movie Product { get; set; }
+
+
+
+        protected override void OnLoad( EventArgs e )
+
+        {
+
             base.OnLoad(e);
 
-            //Load the data
+
+
+            //Load product
+
             if (Movie != null)
+
             {
-                _txtTitle.Text = Movie.Title;
-                _txtDescription.Text = Movie.Description;
+
+                _txtTitle.Text = Product.Title;
+
+                _txtDescription.Text = Product.Description;
+
                 _txtLength.Text = Movie.Length.ToString();
 
-                _cbIsOwned.Checked = Movie.IsOwned;
+                _chkIsOwned.Checked = Movie.IsOwned;
+
             };
+
+
+
+            ValidateChildren();
+
         }
+
+
 
         #region Event Handlers
 
-        private void OnCancel ( object sender, EventArgs e )
+
+
+        private void OnCancel( object sender, EventArgs e )
+
         {
-            DialogResult = DialogResult.Cancel;
-            Close();
+
         }
 
-        private void OnSave ( object sender, EventArgs e )
+
+
+        private void OnSave( object sender, EventArgs e )
+
         {
-            var newMovie = ValidateMovie();
-            if (newMovie == null)
+
+            //Force validation of child controls
+
+            if (!ValidateChildren())
+
                 return;
 
-            //Save the data
-            if (Movie != null)
+
+
+            // Create product - using object initializer syntax
+
+            var movie = new Movie() {
+
+                Title = _txtTitle.Text,
+
+                Description = _txtDescription.Text,
+
+                Length = ConvertToLength(_txtLength),
+
+                IsOwned = _chkIsOwned.Checked,
+
+            };
+
+
+
+            //Validate product using IValidatableObject
+
+            var errors = ObjectValidator.Validate(movie);
+
+            if (errors.Count() > 0)
+
             {
-                Movie.Title = newMovie.Title;
-                Movie.Description = newMovie.Description;
-                Movie.Length = newMovie.Length;
-                Movie.IsOwned = newMovie.IsOwned;
-            } else
-                Movie = newMovie;
+
+                //Get first error
+
+                DisplayError(errors.ElementAt(0).ErrorMessage);
+
+                return;
+
+            };
+
+
+
+            //Return from form
+
+            Movie = movie;
 
             DialogResult = DialogResult.OK;
+
+
+
             Close();
+
         }
 
         #endregion
 
-        #region Private Members
 
-        private Movie ValidateMovie ( )
+
+        private void DisplayError( string message )
+
         {
-            var movie = new Movie()
-            {
-                Title = _txtTitle.Text,
-                Description = _txtDescription.Text,
-                IsOwned = _cbIsOwned.Checked
-            };
 
-            //Validate title
-            if (movie.Title.Length == 0)
-            {
-                MessageBox.Show(this, "Title is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            };
+            MessageBox.Show(this, message, "Error", MessageBoxButtons.OK,
 
-            //Validate length
-            var length = 0;
-            if (_txtLength.Text.Length > 0)
-            {
-                if (!Int32.TryParse(_txtLength.Text, out length) || length < 0)
-                {
-                    MessageBox.Show(this, "Length must be >= 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return null;
-                };
+                            MessageBoxIcon.Error);
 
-                movie.Length = length;
-            };
-
-            return movie;
         }
-        #endregion
+
+        private decimal ConvertToLength( TextBox control )
+
+        {
+
+            if (Decimal.TryParse(control.Text, out var length))
+
+                return length;
+
+
+
+            return 0;
+
+        }
+
+
+
+        private void _txtTitle_Validating( object sender, System.ComponentModel.CancelEventArgs e )
+
+        {
+
+            var textbox = sender as TextBox;
+
+
+
+            if (String.IsNullOrEmpty(textbox.Text))
+
+            {
+
+
+
+                _errorProvider.SetError(textbox, "Title is required");
+
+                e.Cancel = true;
+
+            } else
+
+                _errorProvider.SetError(textbox, "");
+
+        }
+
+
+
+        private void _txtLength_Validating( object sender, System.ComponentModel.CancelEventArgs e )
+
+        {
+
+            var textbox = sender as TextBox;
+
+
+
+            var length = ConvertToLength(textbox);
+
+            if (length < 0)
+
+            {
+
+                _errorProvider.SetError(textbox, "Length must be >= 0");
+
+                e.Cancel = true;
+
+            } else
+
+                _errorProvider.SetError(textbox, "");
+
+        }
+
     }
+
 }
