@@ -20,9 +20,7 @@ namespace MovieLib
             public int Id { get; set; }
 
 
-        public int Id { get; set; }
-
-        /// <summary>Determines if the movie is owned or not.</summary>
+       /// <summary>Determines if the movie is owned or not.</summary>
         public bool IsOwned { get; set; }
 
         /// <summary>Gets or sets the length, in minutes.</summary>
