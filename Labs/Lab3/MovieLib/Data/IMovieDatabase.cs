@@ -15,11 +15,12 @@ namespace MovieLib.Data
 
     {
 
-        /// <summary>Adds a product to the database.</summary>
+        /// <summary>Adds a movie to the database.</summary>
 
         /// <param name="movie">The product to add.</param>
+       /// <param name="message">The error message, if any.</param>
 
-        /// <returns>The added product.</returns>
+        /// <returns>The added movie.</returns>
 
         /// <exception cref="ArgumentNullException"><paramref name="movie"/> is null.</exception>
 
@@ -33,17 +34,17 @@ namespace MovieLib.Data
 
         /// <paramref name="movie"/> is null or invalid.
 
-        /// A product with the same name already exists.
+        /// A movie with the same name already exists.
 
         /// </remarks>
 
-        Movie Add( Movie movie );
+        Movie Add( Movie movie, out string message );
 
 
 
-        /// <summary>Gets all the products.</summary>
+        /// <summary>Gets all the movies.</summary>
 
-        /// <returns>The list of products.</returns>
+        /// <returns>The list of movies.</returns>
 
         IEnumerable<Movie> GetAll();
 
@@ -51,33 +52,33 @@ namespace MovieLib.Data
 
         /// <summary>Removes a product.</summary>
 
-        /// <param name="Title">The ID of the project.</param>
+        /// <param name="id">The ID of the project.</param>
 
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="Title"/> is less than or equal to zero.</exception>
 
         /// <remarks>
 
-        /// Returns an error if <paramref name="Title"/> is less than or
+        /// Returns an error if <paramref name="id"/> is less than or
 
         /// equal to zero.
 
         /// </remarks>
 
         void Remove( int id );
+       
 
 
+        /// <summary>Updates an existing movie in the database.</summary>
 
-        /// <summary>Updates an existing product in the database.</summary>
+        /// <param name="movie">The movie to update.</param>
 
-        /// <param name="movie">The product to update.</param>
-
-        /// <returns>The updated product.</returns>
+        /// <returns>The updated movie.</returns>
 
         /// <exception cref="ArgumentNullException"><paramref name="movie"/> is null.</exception>
 
         /// <exception cref="ValidationException"><paramref name="movie"/> is invalid.</exception>
 
-        /// <exception cref="Exception">A product with the same name already exists.</exception>
+        /// <exception cref="Exception">A movie with the same name already exists.</exception>
 
         /// <exception cref="ArgumentException">The product does not exist.</exception>
 
@@ -87,12 +88,13 @@ namespace MovieLib.Data
 
         /// <paramref name="movie"/> is null or invalid.
 
-        /// A product with the same name already exists.
+        /// A movie with the same name already exists.
 
-        /// The product does not exist.
+        /// The movie does not exist.
 
         /// </remarks>
 
-        Movie Update( Movie movie );
+        Movie Update( Movie movie, out string message  );
+        void Remove( object id );
     }
 }

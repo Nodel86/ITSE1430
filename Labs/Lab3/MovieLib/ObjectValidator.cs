@@ -43,16 +43,9 @@ namespace MovieLib
 
 
 
-        public static void Validate( this IValidatableObject source )
-
-        {
-
-            var context = new ValidationContext(source);
-
-            Validator.ValidateObject(source, context, true);
-
+       
         }
 
     }
 
-}
+

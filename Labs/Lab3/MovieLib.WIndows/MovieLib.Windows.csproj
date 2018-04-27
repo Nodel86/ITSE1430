@@ -98,6 +98,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MovieLib.Data.Memory\MovieLib.Data.Memory.csproj">
+      <Project>{ADDE0CCE-E419-405C-946E-8430F9726049}</Project>
+      <Name>MovieLib.Data.Memory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MovieLib\MovieLib.csproj">
       <Project>{0edae33f-3b44-40ba-974a-7d7a86d9d8aa}</Project>
       <Name>MovieLib</Name>

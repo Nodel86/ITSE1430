@@ -113,6 +113,11 @@ namespace MovieLib.Data.Memory
 
         }
 
+        private void Copy( object existing, Movie movie )
+        {
+            throw new NotImplementedException();
+        }
+
         private object GetCore( string title )
         {
             throw new NotImplementedException();
@@ -195,6 +200,21 @@ namespace MovieLib.Data.Memory
         }
 
         Movie IMovieDatabase.Update( Movie movie )
+        {
+            throw new NotImplementedException();
+        }
+
+        void IMovieDatabase.Add( Movie movie, out object message )
+        {
+            throw new NotImplementedException();
+        }
+
+        void IMovieDatabase.Update( Movie movie, out object message )
+        {
+            throw new NotImplementedException();
+        }
+
+        void IMovieDatabase.Remove( object id )
         {
             throw new NotImplementedException();
         }

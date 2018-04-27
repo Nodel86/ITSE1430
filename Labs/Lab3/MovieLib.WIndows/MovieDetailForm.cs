@@ -17,7 +17,7 @@ namespace MovieLib.Windows
 {
     public partial class MovieDetailForm : Form
     {
-        public MovieDetailForm ()
+        public MovieDetailForm ( Movie movie )
         {
             InitializeComponent();
         }
