@@ -34,7 +34,7 @@ namespace MovieLib.Windows
         private void RefreshUI()
 
         {
-            var products = _database.GetAll();
+            var movies = _database.GetAll();
             movieBindingSource.DataSource = movies.ToList();
         }
 
@@ -112,15 +112,29 @@ namespace MovieLib.Windows
                 return;
 
             };
-
-
-
             EditMovie(movie);
 
         }
-    }
 
-        private void OnFileExit ( object sende, EventArgs e )
+        private void EditMovie( Movie movie )
+        {
+            var form = new MovieDetailForm(movie);
+            var result = form.ShowDialog(this);
+            if (result != DialogResult.OK)
+                return;
+
+            //Update the movie
+            form.Movie.Id = movie.Id;
+            _database.Update(form.Movie, out var message);
+            if (!String.IsNullOrEmpty(message))
+                MessageBox.Show(message);
+
+            RefreshUI();
+        }
+
+
+    }
+       private void OnFileExit ( object sende, EventArgs e )
         {
             Close();
         }
