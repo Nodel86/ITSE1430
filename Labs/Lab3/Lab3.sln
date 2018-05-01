@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AshtonHarris.MovieLib.Windows", "Lab3\AshtonHarris.MovieLib.Windows.csproj", "{E2940628-0276-43E8-B4BB-DF77260773C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AshtonHarris.MovieLib.Data.Memory", "AshtonHarris.MovieLib.Data.Memory\AshtonHarris.MovieLib.Data.Memory.csproj", "{FF0F5310-DB65-4513-9DA3-733450980DD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AshtonHarris.MovieLib", "AshtonHarris.MovieLib\AshtonHarris.MovieLib.csproj", "{5CB0D797-5BA9-4114-BA78-98F6BE5F49AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2940628-0276-43E8-B4BB-DF77260773C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2940628-0276-43E8-B4BB-DF77260773C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2940628-0276-43E8-B4BB-DF77260773C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2940628-0276-43E8-B4BB-DF77260773C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF0F5310-DB65-4513-9DA3-733450980DD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF0F5310-DB65-4513-9DA3-733450980DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF0F5310-DB65-4513-9DA3-733450980DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF0F5310-DB65-4513-9DA3-733450980DD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CB0D797-5BA9-4114-BA78-98F6BE5F49AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CB0D797-5BA9-4114-BA78-98F6BE5F49AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CB0D797-5BA9-4114-BA78-98F6BE5F49AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CB0D797-5BA9-4114-BA78-98F6BE5F49AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C820F96-E464-46A1-888C-CC8204FEE259}
+	EndGlobalSection
+EndGlobal
