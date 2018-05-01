@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AshtonHarris.MovieLib.Windows
 {
-    public partial class OnHelpAboutForm : Form
+    partial class OnHelpAboutForm : Form
     {
         public OnHelpAboutForm()
         {
@@ -20,7 +18,7 @@ namespace AshtonHarris.MovieLib.Windows
             labelProductName.Text = String.Format("Movie Library");
             labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
             labelCopyright.Text = AssemblyCopyright + String.Format(" ITSE1430");
-            labelCompanyName.Text = String.Format("Ashton Harris");
+            labelCompanyName.Text = String.Format("William Faglie");
             textBoxDescription.Text = AssemblyDescription;
 
         }
@@ -100,4 +98,3 @@ namespace AshtonHarris.MovieLib.Windows
         #endregion
     }
 }
-

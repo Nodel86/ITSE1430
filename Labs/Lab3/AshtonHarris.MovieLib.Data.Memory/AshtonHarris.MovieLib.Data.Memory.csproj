@@ -46,9 +46,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AshtonHarris.MovieLib\AshtonHarris.MovieLib.csproj">
       <Project>{5cb0d797-5ba9-4114-ba78-98f6be5f49ae}</Project>
       <Name>AshtonHarris.MovieLib</Name>

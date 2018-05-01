@@ -16,20 +16,20 @@ namespace AshtonHarris.MovieLib.Windows
         {
             InitializeComponent();
         }
-        /// <summary>Allows you to enter the movie title</summary>
-        /// <param name="title"></param>
-        public MovieDetailForm( string title ) : this()
+            /// <summary>Allows you to enter the movie title</summary>
+            /// <param name="title"></param>
+            public MovieDetailForm( string title ) : this()
         {
 
-            Text = title;
-        }
+                Text = title;
+            }
 
-        /// <summary>Creates a movie.</summary>
-        /// <param name="movie"></param>
-        public MovieDetailForm( Movie movie ) : this("Update Product")
+            /// <summary>Creates a movie.</summary>
+            /// <param name="movie"></param>
+            public MovieDetailForm( Movie movie ) : this("Update Product")
         {
-            Movie = movie;
-        }
+                Movie = movie;
+            }
 
         /// <summary>Creates movie object.</summary>
         public Movie Movie { get; set; }

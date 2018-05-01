@@ -8,7 +8,7 @@ namespace AshtonHarris.MovieLib.Windows
 {
     class Program
     {
-        static void Main( string[] args )
+        static void Main(string[] args)
         {
         }
     }
