@@ -92,6 +92,10 @@
       <Project>{FF0F5310-DB65-4513-9DA3-733450980DD9}</Project>
       <Name>AshtonHarris.MovieLib.Data.Memory</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AshtonHarris.MovieLib\AshtonHarris.MovieLib.csproj">
+      <Project>{fed54e42-bc1f-4d34-be6c-e96bf301b96f}</Project>
+      <Name>AshtonHarris.MovieLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainForm.resx">
