@@ -13,33 +13,21 @@ namespace AshtonHarris.MovieLib.Data
         /// <param name="movie"></param>
         /// <param name="message"></param>
         /// <returns></returns>
-        public Movie Add( Movie movie, out string message )
+        public Movie Add( Movie movie )
         {
             //Check for null
-            if (movie == null)
-            {
-                message = "Movie cannot be null.";
-                return null;
-            };
+            movie = movie ?? throw new ArgumentNullException(nameof(movie));
 
             //Validate movie
-            var errors = movie.Validate();
-            var error = errors.FirstOrDefault();
-            if (error != null)
-            {
-                message = error.ErrorMessage;
-                return null;
-            };
+            movie.Validate();
 
             // Verify unique movie
             var existing = GetMovieByTitleCore(movie.Title);
             if (existing != null)
             {
-                message = "Movie already exists";
-                return null;
+                throw new Exception("Movie already exists");
             };
 
-            message = null;
             return AddCore(movie);
         }
 
@@ -47,41 +35,28 @@ namespace AshtonHarris.MovieLib.Data
         /// <param name="movie"></param>
         /// <param name="message"></param>
         /// <returns></returns>
-        public Movie Update( Movie movie, out string message )
+        public Movie Update( Movie movie )
         {
-            message = "";
 
             //Check for null
             if (movie == null)
-            {
-                message = "Movie cannot be null.";
-                return null;
-            };
+
+                throw new ArgumentNullException(nameof(movie));
+
 
             //Validate movie
-            var errors = ObjectValidator.Validate(movie);
-            if (errors.Count() > 0)
-            {
-                message = errors.ElementAt(0).ErrorMessage;
-                return null;
-            };
+            movie.Validate();
 
             //Verify unique movie except current movie
             var existing = GetMovieByTitleCore(movie.Title);
             if (existing != null && existing.Id != movie.Id)
-            {
-                message = "Movie already exists";
-                return null;
-            };
+                throw new Exception("Movie already exists");
 
             //Find existing
             existing = existing ?? GetCore(movie.Id);
 
             if (existing == null)
-            {
-                message = "Movie not found.";
-                return null;
-            };
+                throw new ArgumentException("Movie not found", nameof(movie));
 
             return UpdateCore(movie);
         }
@@ -90,17 +65,20 @@ namespace AshtonHarris.MovieLib.Data
         /// <returns></returns>
         public IEnumerable<Movie> GetAll()
         {
-            return GetAllCore();
+            return from m in GetAllCore()
+                   orderby m.Title, m.Id descending
+                   select m;
         }
 
         /// <summary>Removes movie based on id.</summary>
         /// <param name="id"></param>
         public void Remove( int id )
         {
-            if (id > 0)
-            {
-                RemoveCore(id);
-            };
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(id), "Id must be > 0");
+
+            RemoveCore(id);
+
         }
 
 

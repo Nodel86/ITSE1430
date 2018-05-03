@@ -8,8 +8,8 @@ namespace AshtonHarris.MovieLib.Data
 {
     public interface IMovieDatabase
     {
-        Movie Add( Movie movie, out string message );
-        Movie Update( Movie movie, out string message );
+        Movie Add( Movie movie  );
+        Movie Update( Movie movie);
         IEnumerable<Movie> GetAll();
         void Remove( int id );
     }

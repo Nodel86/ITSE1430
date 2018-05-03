@@ -1,8 +1,9 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace WebApplication1
+namespace AshtonHarris.MovieLib.Web.Mvc
 {
+
     public class FilterConfig
     {
         public static void RegisterGlobalFilters( GlobalFilterCollection filters )
