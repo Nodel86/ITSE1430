@@ -1,4 +1,9 @@
-﻿using System;
+﻿//////////////
+////Ashton Harris
+////ITSE 1430
+////Lab4
+//////////////
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
