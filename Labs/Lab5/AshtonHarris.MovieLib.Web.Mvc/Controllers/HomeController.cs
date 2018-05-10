@@ -1,10 +1,15 @@
-﻿using System;
+﻿////////////////
+////Ashton Harris
+////ITSE 1430
+////Lab5
+///////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WebApplication1.Controllers
+namespace AshtonHarris.MovieLib.Web.Mvc.Controllers
 {
     public class HomeController : Controller
     {
